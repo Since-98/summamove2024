@@ -1,11 +1,514 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summa Move</title>
-</head>
-<body>
+    <title>Oefeningen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #495057;
+        }
 
+        header {
+            background-color: rgb(206, 219, 219);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-weight: bold;
+            color: black;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .logo img {
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        main {
+            margin: 20px;
+            padding: 20px;
+            background-color: rgb(24, 104, 183);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: none; /* Initially hide main content */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        footer {
+            background-color: rgb(24, 104, 183);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .icon-button.logout {
+            color: #dc3545;
+        }
+
+        textarea,
+        input[type="text"],
+        input[type="file"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        textarea:focus,
+        input[type="text"]:focus {
+            border-color: #28a745;
+            outline: none;
+            box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #preview {
+            max-width: 200px;
+            max-height: 200px;
+            display: none;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .login-container,
+        .register-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: block; /* Initially show login form */
+            width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-group button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Additional Styles for Fitness Theme */
+        .login-container {
+            background-color: #f8f9fa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .login-container h2 {
+            color: #343a40;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .login-container label {
+            color: #495057;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .login-container input[type="email"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .login-container button {
+            background-color: #218838;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #1e7e34;
+        }
+
+        .login-container button:focus {
+            outline: none;
+        }
+
+        .login-container .form-group {
+            margin-bottom: 20px;
+        }
+
+        .login-container .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .icon-button.delete {
+            color: #dc3545;
+        }
+
+        .icon-button.delete:hover {
+            color: #c82333;
+        }
+    </style>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="C:\Data\School\project4\summamove\public\html\logo-1861420_1280.jpg" alt="Logo">
+            <h1>SummaMove</h1>
+        </a>
+        <button class="icon-button logout" onclick="logout()">Uitloggen</button>
+    </header>
+    <main id="mainContent">
+        <button onclick="toggleForm()">Nieuwe Oefening Toevoegen</button>
+        <div class="form-container" id="formContainer">
+            <h2>Nieuwe Oefening Toevoegen</h2>
+            <form id="createForm">
+                <div class="form-group">
+                    <label for="createNaam">Naam:</label><br>
+                    <input type="text" id="createNaam" name="createNaam" required><br>
+                </div>
+                <div class="form-group">
+                    <label for="createBeschrijving">Beschrijving:</label><br>
+                    <textarea id="createBeschrijving" name="createBeschrijving" required></textarea><br>
+                </div>
+                <div class="form-group">
+                    <label for="createFoto">Foto:</label><br>
+                    <input type="file" id="createFoto" name="createFoto" accept="image/*" onchange="previewImage(event)">
+                    <img id="preview" src="#" alt="Preview" style="max-width: 200px; max-height: 200px; display: none;">
+                </div>
+                <div class="form-group">
+                    <button type="button" onclick="saveCreate()">Opslaan</button>
+                    <button type="button" onclick="resetForm()">Annuleren</button>
+                </div>
+            </form>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Beschrijving</th>
+                    <th>Foto</th>
+                    <th>Acties</th>
+                </tr>
+            </thead>
+            <tbody id="tabelInhoud">
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2024 SummaMove</p>
+    </footer>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email:</label><br>
+                <input type="email" id="loginEmail" name="loginEmail" required><br>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label><br>
+                <input type="password" id="loginPassword" name="loginPassword" required><br>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="login()">Login</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        "use strict";
+        const apiBasis = "http://127.0.0.1:8000/api/";
+        const apiOefeningen = apiBasis + "oefeningen";
+        const apiRegister = apiBasis + "register";
+        const apiLogin = apiBasis + "login";
+        let oefeningen = [];
+        let accessToken = '';
+
+        const login = async () => {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                console.log('Attempting login...');
+                const response = await axios.post(apiLogin, {
+                    email: email,
+                    password: password
+                });
+
+                if (response.data.access_token) {
+                    accessToken = response.data.access_token;
+                    console.log('Login successful');
+                    await laad();
+                } else {
+                    console.error('Error logging in');
+                }
+            } catch (error) {
+                console.error('Error logging in:', error);
+            }
+        };
+
+        const laad = async () => {
+            console.log('Loading data...');
+            try {
+                const response = await axios.get(apiOefeningen, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+                if (response.data.success) {
+                    oefeningen = response.data.data;
+                    toon();
+                    document.getElementById('mainContent').style.display = 'block'; // Show main content after successful login
+                    document.querySelector('.login-container').style.display = 'none'; // Hide login form after successful login
+                } else {
+                    console.error('API request failed:', response.data);
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        };
+
+        const toon = () => {
+            let tabelInhoud = '';
+            if (Array.isArray(oefeningen)) {
+                oefeningen.forEach(el => {
+                    tabelInhoud += `<tr><td>${el.naam}</td><td>${el.beschrijving}</td><td><img src="${el.foto}" alt="Exercise Foto" style="max-width: 100px; max-height: 100px; border-radius: 5px;"></td><td><button class="icon-button delete" onclick="verwijder(${el.id})"><i class="fas fa-trash-alt"></i></button></td></tr>`;
+                });
+            } else {
+                console.error('Exercises is not an array:', oefeningen);
+            }
+            document.querySelector("#tabelInhoud").innerHTML = tabelInhoud;
+        };
+
+        const saveCreate = async () => {
+            const naam = document.getElementById('createNaam').value;
+            const beschrijving = document.getElementById('createBeschrijving').value;
+            const foto = document.getElementById('createFoto').files[0];
+
+            const formData = new FormData();
+            formData.append('naam', naam);
+            formData.append('beschrijving', beschrijving);
+            formData.append('foto', foto);
+
+            try {
+                const response = await axios.post(apiOefeningen, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+                if (response.status === 200) {
+                    console.log('Exercise added');
+                    resetForm();
+                    toggleForm();
+                    await laad();
+                } else {
+                    console.error('Error adding exercise');
+                }
+            } catch (error) {
+                console.error('Error adding exercise:', error);
+            }
+        };
+
+        const verwijder = async (id) => {
+            try {
+                console.log("Deleting exercise: ", id);
+                const response = await axios.delete(apiOefeningen + "/" + id, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+                if (response.status === 200) {
+                    console.log('Exercise deleted');
+                    await laad();
+                } else {
+                    console.error('Error deleting exercise');
+                }
+            } catch (error) {
+                console.error('Error deleting exercise:', error);
+            }
+        };
+
+        const previewImage = (event) => {
+            const preview = document.getElementById('preview');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "#";
+                preview.style.display = 'none';
+            }
+        };
+
+        const resetForm = () => {
+            document.getElementById('createForm').reset();
+            document.getElementById('preview').style.display = 'none';
+        };
+
+        const toggleForm = () => {
+            const formContainer = document.getElementById('formContainer');
+            if (formContainer.style.display === 'none' || formContainer.style.display === '') {
+                formContainer.style.display = 'block';
+            } else {
+                formContainer.style.display = 'none';
+            }
+
+        };
+
+        const logout = () => {
+            accessToken = ''; // Clear access token
+            oefeningen = []; // Clear exercise
+            document.getElementById('mainContent').style.display = 'none'; // verberg main content
+            document.querySelector('.login-container').style.display = 'block'; //  login form
+            console.log('User logged out');
+        };
+    </script>
 </body>
+
 </html>
+

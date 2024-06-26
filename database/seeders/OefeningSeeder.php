@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
 class OefeningSeeder extends Seeder
 {
     /**
@@ -12,7 +12,6 @@ class OefeningSeeder extends Seeder
      */
     public function run(): void
     {
-
         DB::table('oefeningen')->insert([
             ['naam' => 'Push-ups', 'beschrijving' => 'Basic upper body exercise', 'foto' => 'https://static.strengthlevel.com/images/exercises/push-ups/push-ups-800.jpg'],
             ['naam' => 'Squats', 'beschrijving' => 'Lower body exercise targeting quadriceps, hamstrings, and glutes', 'foto' => 'https://static.strengthlevel.com/images/exercises/squat/squat-800.jpg'],
@@ -33,8 +32,7 @@ class OefeningSeeder extends Seeder
             ['naam' => 'Mountain Climbers', 'beschrijving' => 'Full body exercise targeting the core and lower body', 'foto' => 'https://static.strengthlevel.com/images/exercises/mountain-climbers/mountain-climbers-800.jpg'],
             ['naam' => 'Kettlebell Swings', 'beschrijving' => 'Full body exercise targeting the core and lower body', 'foto' => 'https://static.strengthlevel.com/images/exercises/kettlebell-swing/kettlebell-swing-800.jpg'],
             ['naam' => 'Jumping Jacks', 'beschrijving' => 'Cardiovascular exercise targeting the whole body', 'foto' => 'https://static.strengthlevel.com/images/exercises/jumping-jack/jumping-jack-800.jpg'],
-            ['naam' => 'High Knees', 'beschrijving' => 'Cardiovascular exercise targeting the lower body and core', 'foto' => 'https://static.strengthlevel.com/images/exercises/high-knees/high-knees-800.jpg']
+            ['naam' => 'High Knees', 'beschrijving' => 'Cardiovascular exercise targeting the lower body and core', 'foto' => 'https://s3.amazonaws.com/prod.skimble/assets/2437757/image_iphone.jpg'],
         ]);
     }
-
 }

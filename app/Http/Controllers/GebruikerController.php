@@ -1,34 +1,23 @@
 <?php
+
 namespace App\Http\Controllers;
-use App\Models\Gebruiker;
+
+use App\Models\gebruiker;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 
 class GebruikerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        Log::info('Gebruiker index opgevraagd', [
-            'ip' => $request->ip(),
-            'data' => $request->all()
-        ]);
-
-        return response()->json([
+        $response = [
             'success' => true,
-            'data' => Gebruiker::all(),
-        ], 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+            'data'    => gebruiker::All(),
+            'token_type' => 'Bearer'
+        ];
+        return response()->json($response, 200);
     }
 
     /**
@@ -36,32 +25,26 @@ class GebruikerController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Gebruiker $gebruiker)
+    public function show(gebruiker $gebruiker)
     {
-        return response()->json([
+        $response = [
             'success' => true,
-            'data' => $gebruiker->load('gebruiker'),
-        ], 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+            'data'    =>  $gebruiker,
+            'token_type' => 'Bearer'
+        ];
+        return response()->json($response, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, gebruiker $gebruiker)
     {
         //
     }
@@ -69,7 +52,7 @@ class GebruikerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(gebruiker $gebruiker)
     {
         //
     }

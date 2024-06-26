@@ -15,7 +15,13 @@ class GebruikerSeeder extends Seeder
         DB::table('gebruikers')->insert([
             ['naam' => 'John Doe'],
             ['naam' => 'Jane Smith'],
-            ['naam' => 'Alice Johnson'],
+            ['naam' => 'Ali Aloosh'],
+            ['naam' => 'Hans'],
+            ['naam' => 'Humayun Saeed'],
+            ['naam' => 'Nero N'],
+            ['naam' => 'King K'],
+            ['naam' => 'Mr Darcy'],
+            ['naam' => 'Romeo Santos'],
 
     ]);
 
